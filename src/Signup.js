@@ -1,4 +1,4 @@
-// src/components/Signup.js
+//src/components/Signup.js
 import React, { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "./firebaseConfig";
@@ -18,6 +18,12 @@ function Signup() {
       await setDoc(doc(db, "users", user.uid), {
         email, userType, createdAt: new Date(),
       });
+      if (userType === "student") {
+        navigate("/student-dashboard")
+      } else {
+        navigate("/employer-dashboard")
+      }
+      
       navigate("/home");
     } catch (err) {
       let customMessage = "Something went wrong. Please try again.";
