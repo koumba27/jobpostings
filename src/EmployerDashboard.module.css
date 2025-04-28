@@ -1,0 +1,149 @@
+/* EmployerDashboard.module.css */
+
+/* General Container */
+.dashboardContainer {
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  font-family: Arial, sans-serif;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+h2 {
+  font-family: Arial, sans-serif;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+h2 {
+  font-family: Arial, sans-serif;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+h2 {
+  font-family: Arial, sans-serif;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+p {
+  font-family: Arial, sans-serif;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+/* Heading */
+.heading {
+  font-size: 2.5rem;
+  font-family: Arial, sans-serif;
+  color: #4CAF50;
+  text-align: center;
+}
+
+/* Content Wrapper for Side-by-Side Layout */
+.contentWrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* Form for posting job */
+.postJobContainer {
+  flex: 1;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.postJobContainer input,
+.postJobContainer textarea {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+/* Button inside post job */
+.postButton {
+  background-color: #4CAF50;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.postButton:hover {
+  background-color: #45a049;
+}
+
+/* Job List Container */
+.jobListContainer {
+  flex: 1;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Button to delete a job */
+.deleteButton {
+  background-color: #f44336;
+  padding: 8px 16px;
+  font-size: 1rem;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.deleteButton:hover {
+  background-color: #e53935;
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+  .contentWrapper {
+    flex-direction: column;
+  }
+
+  .postJobContainer,
+  .jobListContainer {
+    max-width: 100%;
+  }
+}
