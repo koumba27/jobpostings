@@ -42,7 +42,12 @@ function StudentDashboard() {
               <br />
               {job.applicationLink && (
                 <>
-                  🔗 <a href={job.applicationLink} target="_blank" rel="noopener noreferrer">
+                  🔗{" "}
+                  <a
+                    href={job.applicationLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     Apply Here
                   </a>
                   <br />
