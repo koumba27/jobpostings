@@ -10,9 +10,9 @@ function StudentDashboard() {
     const fetchJobs = async () => {
       try {
         const querySnapshot = await getDocs(collection(db, "jobs"));
-        const jobList = querySnapshot.docs.map(doc => ({
+        const jobList = querySnapshot.docs.map((doc) => ({
           id: doc.id,
-          ...doc.data()
+          ...doc.data(),
         }));
         setJobs(jobList);
       } catch (error) {
@@ -32,13 +32,22 @@ function StudentDashboard() {
         <p>No jobs available right now.</p>
       ) : (
         <ul>
-          {jobs.map(job => (
+          {jobs.map((job) => (
             <li key={job.id} style={{ marginBottom: "1rem" }}>
-              <strong>{job.title}</strong> at <em>{job.company}</em>  
+              <strong>{job.title}</strong> at <em>{job.company}</em>
               <br />
               📍 {job.location}
               <br />
               📝 {job.description}
+              <br />
+              {job.applicationLink && (
+                <>
+                  🔗 <a href={job.applicationLink} target="_blank" rel="noopener noreferrer">
+                    Apply Here
+                  </a>
+                  <br />
+                </>
+              )}
             </li>
           ))}
         </ul>

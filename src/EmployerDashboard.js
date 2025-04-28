@@ -1,4 +1,3 @@
-// src/EmployerDashboard.js
 import React, { useState, useEffect } from "react";
 import {
   collection,
@@ -15,6 +14,7 @@ function EmployerDashboard() {
   const [company, setCompany] = useState("");
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
+  const [applicationLink, setApplicationLink] = useState(""); // New state for application link
   const [jobs, setJobs] = useState([]);
   const [status, setStatus] = useState("");
 
@@ -32,7 +32,7 @@ function EmployerDashboard() {
   };
 
   const handlePostJob = async () => {
-    if (!title || !company || !location || !description) {
+    if (!title || !company || !location || !description || !applicationLink) {
       setStatus("❗ Please fill in all fields.");
       return;
     }
@@ -43,6 +43,7 @@ function EmployerDashboard() {
         company,
         location,
         description,
+        applicationLink, // Save the application link
         postedAt: serverTimestamp(),
       });
 
@@ -51,6 +52,7 @@ function EmployerDashboard() {
       setCompany("");
       setLocation("");
       setDescription("");
+      setApplicationLink(""); // Clear the application link field
       fetchJobs(); // refresh the list
     } catch (error) {
       console.error("Error posting job:", error);
@@ -106,6 +108,13 @@ function EmployerDashboard() {
         rows={4}
         style={{ display: "block", marginBottom: "10px", width: "300px" }}
       />
+      <input
+        type="url"
+        placeholder="Application Link"
+        value={applicationLink}
+        onChange={(e) => setApplicationLink(e.target.value)}
+        style={{ display: "block", marginBottom: "10px", width: "300px" }}
+      />
       <button onClick={handlePostJob}>📤 Post Job</button>
       {status && <p style={{ marginTop: "1rem" }}>{status}</p>}
 
@@ -123,6 +132,10 @@ function EmployerDashboard() {
               📍 {job.location}
               <br />
               📝 {job.description}
+              <br />
+              🔗 <a href={job.applicationLink} target="_blank" rel="noopener noreferrer">
+                Apply Here
+              </a>
               <br />
               <button onClick={() => handleDeleteJob(job.id)} style={{ marginTop: "5px" }}>
                 ❌ Delete
