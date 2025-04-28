@@ -8,6 +8,7 @@ import {
   serverTimestamp,
 } from "firebase/firestore";
 import { db } from "./firebaseConfig";
+import styles from "./EmployerDashboard.module.css";
 
 function EmployerDashboard() {
   const [title, setTitle] = useState("");
@@ -76,10 +77,16 @@ function EmployerDashboard() {
   }, []);
 
   return (
-    <div style={{ padding: "2rem" }}>
+    <div className={styles.dashboardcontainer}>
       <h1>🏢 Employer Dashboard</h1>
-      <p>Post a new job listing:</p>
+      
+      <div className={styles.contentWrapper}>  
+      
+        {/* Form Container */}
+        <div className={styles.postJobContainer}>
+          <p>Post a new job listing:</p>
 
+<<<<<<< HEAD
       <input
         type="text"
         placeholder="Job Title"
@@ -117,10 +124,41 @@ function EmployerDashboard() {
       />
       <button onClick={handlePostJob}>📤 Post Job</button>
       {status && <p style={{ marginTop: "1rem" }}>{status}</p>}
+=======
+          <input
+            type="text"
+            placeholder="Job Title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Company Name"
+            value={company}
+            onChange={(e) => setCompany(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Location"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+          />
+          <textarea
+            placeholder="Job Description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            rows={4}
+          />
+          <button onClick={handlePostJob} className={styles.postButton}>📤 Post Job</button>
+          {status && <p>{status}</p>}
+        </div>
+>>>>>>> 399c81d3d25b7bf0711407bb89db989d5c2779bd
 
-      <hr style={{ margin: "2rem 0" }} />
-      <h2>📋 Your Posted Jobs</h2>
+        {/* Job List Container */}
+        <div className={styles.jobListContainer}>
+          <h2>📋 Your Posted Jobs</h2>
 
+<<<<<<< HEAD
       {jobs.length === 0 ? (
         <p>No jobs posted yet.</p>
       ) : (
@@ -144,8 +182,35 @@ function EmployerDashboard() {
           ))}
         </ul>
       )}
+=======
+          {jobs.length === 0 ? (
+            <p>No jobs posted yet.</p>
+          ) : (
+            <ul>
+              {jobs.map((job) => (
+                <li key={job.id}>
+                  <strong>{job.title}</strong> at <em>{job.company}</em>
+                  <br />
+                  📍 {job.location}
+                  <br />
+                  📝 {job.description}
+                  <br />
+                  <button onClick={() => handleDeleteJob(job.id)} className={styles.deleteButton}>❌ Delete</button>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+
+      </div>
+>>>>>>> 399c81d3d25b7bf0711407bb89db989d5c2779bd
     </div>
   );
 }
 
+<<<<<<< HEAD
 export default EmployerDashboard;
+=======
+
+export default EmployerDashboard;
+>>>>>>> 399c81d3d25b7bf0711407bb89db989d5c2779bd

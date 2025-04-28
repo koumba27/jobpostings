@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Signup from "./Signup";
 import Login from "./Login";
 import Home from "./StudentDashboard";
-import StudentDashboard from "./StudentDashboard";  // ⬅️ Add this file
-import EmployerDashboard from "./EmployerDashboard"; // ⬅️ Add this file
+import StudentDashboard from "./StudentDashboard";  
+import EmployerDashboard from "./EmployerDashboard"; 
 
 function App() {
   return (

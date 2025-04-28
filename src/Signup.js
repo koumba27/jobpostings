@@ -4,6 +4,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "./firebaseConfig";
 import { setDoc, doc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+import styles from "./Signup.module.css";
 
 function Signup() {
   const [email, setEmail] = useState("");
@@ -50,20 +51,33 @@ function Signup() {
 };
 
   return (
-    <div>
-      <h2>Sign Up</h2>
-      <input type="email" placeholder="Email" onChange={e => setEmail(e.target.value)} />
-      <input type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
-      <div>
-        <label>
-          <input type="radio" value="Student" checked={userType === "Student"} onChange={e => setUserType(e.target.value)} /> Student
-        </label>
-        <label>
-          <input type="radio" value="Employer" checked={userType === "Employer"} onChange={e => setUserType(e.target.value)} /> Employer
-        </label>
+    <div className={styles.loginContainer}>
+      <h2 className={styles.heading}>Sign Up</h2>
+      <input type="email" placeholder="Email" onChange={e => setEmail(e.target.value)} className={styles.inputField}/>
+      <input type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} className={styles.inputField}/>
+      <div className={styles.radioButtons}>
+        <input
+          type="radio"
+          id="student"
+          value="student"
+          checked={userType === "student"}
+          onChange={(e) => setUserType(e.target.value)}
+          className={styles.radioInput}
+        />
+        <label htmlFor="student" className={styles.radioLabel}>Student</label>
+
+        <input
+          type="radio"
+          id="employer"
+          value="employer"
+          checked={userType === "employer"}
+          onChange={(e) => setUserType(e.target.value)}
+          className={styles.radioInput}
+        />
+        <label htmlFor="employer" className={styles.radioLabel}>Employer</label>
       </div>
-      <button onClick={handleSignup}>Sign Up</button>
-      <p>Already have an account? <a href="/">Log In</a></p>
+      <button onClick={handleSignup} className={styles.loginButton}>Sign Up</button>
+      <p>Already have an account? <a href="/" className={styles.signupLink}>Log In</a></p>
     </div>
   );
 }
