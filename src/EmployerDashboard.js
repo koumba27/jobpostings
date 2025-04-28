@@ -16,6 +16,7 @@ function EmployerDashboard() {
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
   const [applicationLink, setApplicationLink] = useState(""); // State for application link
+  const [email, setEmail] = useState(""); // State for employer email
   const [jobs, setJobs] = useState([]);
   const [status, setStatus] = useState("");
 
@@ -36,7 +37,7 @@ function EmployerDashboard() {
   // Handle posting a new job
   const handlePostJob = async () => {
     if (!title || !company || !location || !description || !applicationLink) {
-      setStatus("❗ Please fill in all fields.");
+      setStatus("❗ Please fill in all required fields.");
       return;
     }
 
@@ -47,6 +48,7 @@ function EmployerDashboard() {
         location,
         description,
         applicationLink, // Save the application link
+        email: email || null, // Save the employer's email if provided
         postedAt: serverTimestamp(),
       });
 
@@ -55,7 +57,8 @@ function EmployerDashboard() {
       setCompany("");
       setLocation("");
       setDescription("");
-      setApplicationLink(""); // Clear the application link field
+      setApplicationLink("");
+      setEmail(""); // Clear the email field
       fetchJobs(); // Refresh the job list
     } catch (error) {
       console.error("Error posting job:", error);
@@ -124,6 +127,13 @@ function EmployerDashboard() {
             onChange={(e) => setApplicationLink(e.target.value)}
             style={{ display: "block", marginBottom: "10px", width: "300px" }}
           />
+          <input
+            type="email"
+            placeholder="Your Email (Optional)"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            style={{ display: "block", marginBottom: "10px", width: "300px" }}
+          />
           <button onClick={handlePostJob}>📤 Post Job</button>
           {status && <p style={{ marginTop: "1rem" }}>{status}</p>}
         </div>
@@ -148,6 +158,12 @@ function EmployerDashboard() {
                     Apply Here
                   </a>
                   <br />
+                  {job.email && (
+                    <>
+                      📧 Contact: <a href={`mailto:${job.email}`}>{job.email}</a>
+                      <br />
+                    </>
+                  )}
                   <button onClick={() => handleDeleteJob(job.id)} style={{ marginTop: "5px" }}>
                     ❌ Delete
                   </button>
