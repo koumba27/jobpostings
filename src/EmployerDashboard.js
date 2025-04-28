@@ -9,6 +9,7 @@ import {
   serverTimestamp,
 } from "firebase/firestore";
 import { db } from "./firebaseConfig";
+import styles from "./EmployerDashboard.module.css";
 
 function EmployerDashboard() {
   const [title, setTitle] = useState("");
@@ -74,65 +75,70 @@ function EmployerDashboard() {
   }, []);
 
   return (
-    <div style={{ padding: "2rem" }}>
+    <div className={styles.dashboardcontainer}>
       <h1>🏢 Employer Dashboard</h1>
-      <p>Post a new job listing:</p>
+      
+      <div className={styles.contentWrapper}>  
+      
+        {/* Form Container */}
+        <div className={styles.postJobContainer}>
+          <p>Post a new job listing:</p>
 
-      <input
-        type="text"
-        placeholder="Job Title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        style={{ display: "block", marginBottom: "10px", width: "300px" }}
-      />
-      <input
-        type="text"
-        placeholder="Company Name"
-        value={company}
-        onChange={(e) => setCompany(e.target.value)}
-        style={{ display: "block", marginBottom: "10px", width: "300px" }}
-      />
-      <input
-        type="text"
-        placeholder="Location"
-        value={location}
-        onChange={(e) => setLocation(e.target.value)}
-        style={{ display: "block", marginBottom: "10px", width: "300px" }}
-      />
-      <textarea
-        placeholder="Job Description"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-        rows={4}
-        style={{ display: "block", marginBottom: "10px", width: "300px" }}
-      />
-      <button onClick={handlePostJob}>📤 Post Job</button>
-      {status && <p style={{ marginTop: "1rem" }}>{status}</p>}
+          <input
+            type="text"
+            placeholder="Job Title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Company Name"
+            value={company}
+            onChange={(e) => setCompany(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Location"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+          />
+          <textarea
+            placeholder="Job Description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            rows={4}
+          />
+          <button onClick={handlePostJob} className={styles.postButton}>📤 Post Job</button>
+          {status && <p>{status}</p>}
+        </div>
 
-      <hr style={{ margin: "2rem 0" }} />
-      <h2>📋 Your Posted Jobs</h2>
+        {/* Job List Container */}
+        <div className={styles.jobListContainer}>
+          <h2>📋 Your Posted Jobs</h2>
 
-      {jobs.length === 0 ? (
-        <p>No jobs posted yet.</p>
-      ) : (
-        <ul>
-          {jobs.map((job) => (
-            <li key={job.id} style={{ marginBottom: "1.5rem" }}>
-              <strong>{job.title}</strong> at <em>{job.company}</em>
-              <br />
-              📍 {job.location}
-              <br />
-              📝 {job.description}
-              <br />
-              <button onClick={() => handleDeleteJob(job.id)} style={{ marginTop: "5px" }}>
-                ❌ Delete
-              </button>
-            </li>
-          ))}
-        </ul>
-      )}
+          {jobs.length === 0 ? (
+            <p>No jobs posted yet.</p>
+          ) : (
+            <ul>
+              {jobs.map((job) => (
+                <li key={job.id}>
+                  <strong>{job.title}</strong> at <em>{job.company}</em>
+                  <br />
+                  📍 {job.location}
+                  <br />
+                  📝 {job.description}
+                  <br />
+                  <button onClick={() => handleDeleteJob(job.id)} className={styles.deleteButton}>❌ Delete</button>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+
+      </div>
     </div>
   );
 }
+
 
 export default EmployerDashboard;
